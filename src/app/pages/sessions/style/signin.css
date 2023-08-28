@@ -1,0 +1,23 @@
+.signin-button {
+    background-color: white;
+    color: #5e5e5e;
+    font-weight: 600;
+    padding: 12px;
+    border: 1px #8c8c8c;
+    font-size: 15px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signin-button img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.signin-button:hover {
+    background-color: #5e5e5e;
+    color: white;
+}

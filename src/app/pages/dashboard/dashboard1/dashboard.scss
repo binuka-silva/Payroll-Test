@@ -1,0 +1,74 @@
+.div1{
+  text-align: center;
+}
+
+.topic1{
+  color:white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.topic2{
+  margin-top: 1rem;
+  color:white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.line1{
+  background-color: white;
+
+}
+
+.row1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 1rem;
+  text-align: center;
+}
+
+.row2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.text-muted {
+  width: 160px;
+  text-align: start;
+}
+
+.listbox {
+  z-index: 999;
+}
+
+.payroll {
+  padding: 15px;
+}
+
+.bg-custom-1 {
+  background-color: rgba(245, 227, 255, 0.6);
+
+}
+
+.bg-custom-2 {
+  background-color: rgba(245, 227, 255, 0.6);
+}
+
+.table {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 11px;
+}
+
+.donut {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 11px;
+}
+
+.dashboardCards {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 11px;
+}
+

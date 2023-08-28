@@ -1,0 +1,4 @@
+export const RESP_STATUS_CODES = {
+    FORBIDDEN: 403,
+    UNAUTHORIZED: 401,
+}
