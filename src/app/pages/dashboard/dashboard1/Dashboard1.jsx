@@ -358,7 +358,7 @@ const Dashboard1 = () => {
                     xaxis: {
                         categories,
                     },
-                    colors: ["#663399"],
+                    colors: ["#0A7373"],
                 });
                 setPayItem(selected);
             })
@@ -390,8 +390,8 @@ const Dashboard1 = () => {
     return (
         <div>
             <div className="div1">
-                <h1 className="topic1">EMPLOYEE DETAILS</h1>
-                <hr className="line1"/>
+                <h1 className="topic1">Employee Details</h1>
+                {/* <hr className="line1"/> */}
                 <div className="row1">
                     {cardList1.map((card, index) => (
                         <div key={index} className="">
@@ -410,37 +410,26 @@ const Dashboard1 = () => {
                             </div>
                         </div>
                     ))}
-                    <br/><br/>
-                     {cardList2.map((card, index) => (
-                        <div key={index} className="">
-                            <div className="card card-icon-bg card-icon-bg-primary o-hidden m-2">
-                                <div className="top-card-body text-center">
-                                    <i className={card.icon}></i>
-                                    <div className="content">
-                                        <p className="text-muted mt-2 mb-0 text-capitalize text-center">
-                                            {card.subtitle}
-                                        </p>
-                                        <p className="lead text-primary text-24 mb-2 text-capitalize">
-                                            {card.title}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                
+                     
                 </div>
+                
             </div>
-            <div className="card bg-custom-1 payroll text-center">
-            <h2 className="topic2">SUMMARY DETAILS</h2>
-                <hr className="line1"/>
+            <div className="card bg-custom-1 payroll text-center inner_div">
+           
+                {/* <hr className="line1"/> */}
                 <div className="row2">
-                    <div className="col-lg-3 col-md-3 col-sm-3">
-                        <div className="card card-icon-bg card-icon-bg-primary mb-4 ">
-                            <div className="card-body row">
-                                <div className="col-lg-3 col-md-2 col-sm-2">
+                    
+                    <div className="col-lg-4 col-md-4 col-sm-4 ">
+
+                        <div className="card  mb-4 ">
+                        <h2 className="topic2">Payroll Statistics</h2>
+
+                            <div className="divDropdown">
+                                {/* <div className="col-lg-3 col-md-2 col-sm-2">
                                     <i className="i-Financial"></i>
-                                </div>
-                                <div className="col-md-9 mt-3 mb-3 justify-content-end">
+                                </div> */}
+                                <div className="col-md-9 mt-3 mb-3 justify-content-center dropdown">
                                     <AutoCompleteDropDown
                                         dropDownData={payrollProcessList}
                                         size="small"
@@ -465,8 +454,28 @@ const Dashboard1 = () => {
 
                    
                 </div>
-                <div className="row mb-1">
-                    <div className="col-lg-4 col-md-4">
+
+                    <div className="row1">
+                {cardList2.map((card, index) => (
+                        <div key={index} className="">
+                            <div className="card card-icon-bg card-icon-bg-primary o-hidden m-2">
+                                <div className="top-card-body text-center">
+                                    <i className={card.icon}></i>
+                                    <div className="content">
+                                        <p className="text-muted mt-2 mb-0 text-capitalize text-center">
+                                            {card.subtitle}
+                                        </p>
+                                        <p className="lead text-primary text-24 mb-2 text-capitalize">
+                                            {card.title}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div className="row3 ">
+                    <div className="row3_inner">
                         <SimpleCard title="Last Month Summary" className="mb-4">
                             <div className="row">
                                 <div>
@@ -496,7 +505,7 @@ const Dashboard1 = () => {
                             </div>
                         </SimpleCard>
                     </div>
-                    <div className="col-lg-4 col-md-4">
+                    <div className=" row3_inner">
                         <SimpleCard title="Current Month Summary" className="mb-4">
                             <div className="row">
                                 <div>
@@ -526,8 +535,8 @@ const Dashboard1 = () => {
                             </div>
                         </SimpleCard>
                     </div>
-                    <div className="col-md-4">
-                        <div className="col-lg-12 col-md-12">
+                    <div className="col-lg-4 col-md-4 row4">
+                        <div className="col-lg-12 col-md-12 row3_inner">
                             <SimpleCard title="Current Month" className="donut">
                                 <Chart
                                     options={apexDoughnutChartOptions ?? {}}
@@ -538,34 +547,9 @@ const Dashboard1 = () => {
                         </div>
                     </div>
                 </div>
-                <div className="row mb-1">
-                    <div className="col-lg-6 col-md-6">
-                        <SimpleCard title="Last 6 Month Summary">
-                            <div className="row">
-                                <div className=" col-md-4"></div>
-                                <div className=" col-md-4"></div>
-                                <div className=" col-md-4 justify-content-end">
-                                    <AutoCompleteDropDown
-                                        dropDownData={payItemList}
-                                        onChange={payItemOnChange}
-                                        size={"small"}
-                                        label="Search"
-                                        defaultValue={
-                                            payItemList?.find((v) => v.value === payItem.value) ??
-                                            payItemList[0]
-                                        }
-                                        className="listbox"
-                                    />
-                                </div>
-                            </div>
-                            <Chart
-                                options={apexLineChartOptions ?? {}}
-                                series={apexLineChartOptions.series ?? []}
-                                type={apexLineChartOptions.chart?.type ?? "line"}
-                            />
-                        </SimpleCard>
-                    </div>
-                    <div className="col-lg-3 col-md-3">
+                <div className="row3 ">
+                    
+                    <div className=" col-md-3 row3_inner">
                         <SimpleCard title="Top Ten Variances" className="mb-4">
                             <div className="row">
                                 <div>
@@ -591,7 +575,7 @@ const Dashboard1 = () => {
                             </div>
                         </SimpleCard>
                     </div>
-                    <div className="col-lg-3 col-md-3">
+                    <div className="col-md-3 row3_inner">
                         <SimpleCard title="Basic Reconciliation" className="mb-4">
                             <div className="row">
                                 <div>
@@ -617,6 +601,32 @@ const Dashboard1 = () => {
                                     </table>
                                 </div>
                             </div>
+                        </SimpleCard>
+                    </div>
+                    <div className=" col-md-5 row3_inner">
+                        <SimpleCard title="Last 6 Month Summary">
+                            <div className="row">
+                                <div className=" col-md-4"></div>
+                                <div className=" col-md-4"></div>
+                                <div className=" col-md-4 justify-content-end">
+                                    <AutoCompleteDropDown
+                                        dropDownData={payItemList}
+                                        onChange={payItemOnChange}
+                                        size={"small"}
+                                        label="Search"
+                                        defaultValue={
+                                            payItemList?.find((v) => v.value === payItem.value) ??
+                                            payItemList[0]
+                                        }
+                                        className="listbox"
+                                    />
+                                </div>
+                            </div>
+                            <Chart
+                                options={apexLineChartOptions ?? {}}
+                                series={apexLineChartOptions.series ?? []}
+                                type={apexLineChartOptions.chart?.type ?? "line"}
+                            />
                         </SimpleCard>
                     </div>
                 </div>

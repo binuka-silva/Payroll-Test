@@ -7,7 +7,7 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
-    background: $background;
+    background-color: #212121;
     z-index: 100;
     .menu-toggle {
         width: 90px;
@@ -27,7 +27,7 @@
         display: flex;
         align-items: center;
         justify-content: left;
-        background: $gray-100;
+        background: #AFD991;
         border: 1px solid $gray-200;
         border-radius: 20px;
         position: relative;
@@ -61,7 +61,7 @@
     }
     .show {
         .header-icon {
-            background: $gray-100;
+            background: #AFD991;
         }
     }
     .header-icon {
@@ -75,7 +75,7 @@
         border-radius: 8px;
         margin: 0 2px;
         &:hover {
-            background: $gray-100;
+            background: #AFD991;
         }
         &.dropdown-toggle {
             &:after {

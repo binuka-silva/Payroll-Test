@@ -16,7 +16,7 @@ import ChevronLeft from "@material-ui/icons/ChevronLeft";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import Remove from "@material-ui/icons/Remove";
 import ViewColumn from "@material-ui/icons/ViewColumn";
-import {Search} from "@material-ui/icons";
+import {FormatAlignJustify, Search} from "@material-ui/icons";
 import {NotificationManager} from "react-notifications";
 import history from "../../../@history";
 import {connect} from "react-redux";
@@ -30,6 +30,9 @@ import {setBankDetails} from "../../redux/actions/BankDetailsAction";
 import handlePageSize from "../../common/tablePageSize";
 import {omit} from "lodash";
 
+import "./bankList.scss";
+import { Padding } from "@mui/icons-material";
+
 const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
 
     useEffect(() => {
@@ -38,31 +41,31 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
     }, []);
 
     const tableIcons = {
-        Add: forwardRef((props, ref) => <AddBox {...props} ref={ref}/>),
-        Check: forwardRef((props, ref) => <Check {...props} ref={ref}/>),
-        Clear: forwardRef((props, ref) => <Clear {...props} ref={ref}/>),
-        Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref}/>),
+        Add: forwardRef((props, ref) => <AddBox className="search" {...props} ref={ref}/>),
+        Check: forwardRef((props, ref) => <Check className="search" {...props} ref={ref}/>),
+        Clear: forwardRef((props, ref) => <Clear className="search" {...props} ref={ref}/>),
+        Delete: forwardRef((props, ref) => <DeleteOutline  className="deleteButton" {...props} ref={ref}/>),
         DetailPanel: forwardRef((props, ref) => (
             <ChevronRight {...props} ref={ref}/>
         )),
-        Edit: forwardRef((props, ref) => <Edit {...props} ref={ref}/>),
-        Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref}/>),
-        Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref}/>),
-        FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref}/>),
-        LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref}/>),
-        NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref}/>),
+        Edit: forwardRef((props, ref) => <Edit className="editButton" {...props} ref={ref}/>),
+        Export: forwardRef((props, ref) => <SaveAlt className="search" {...props} ref={ref}/>),
+        Filter: forwardRef((props, ref) => <FilterList className="search" {...props} ref={ref}/>),
+        FirstPage: forwardRef((props, ref) => <FirstPage className="search" {...props} ref={ref}/>),
+        LastPage: forwardRef((props, ref) => <LastPage className="search" {...props} ref={ref}/>),
+        NextPage: forwardRef((props, ref) => <ChevronRight className="search" {...props} ref={ref}/>),
         PreviousPage: forwardRef((props, ref) => (
             <ChevronLeft {...props} ref={ref}/>
         )),
-        ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref}/>),
-        Search: forwardRef((props, ref) => <Search {...props} ref={ref}/>),
+        ResetSearch: forwardRef((props, ref) => <Clear className="search" {...props} ref={ref}/>),
+        Search: forwardRef((props, ref) => <Search className="search" {...props} ref={ref}/>),
         SortArrow: forwardRef((props, ref) => (
-            <ArrowDownward {...props} ref={ref}/>
+            <ArrowDownward className="search" {...props} ref={ref}/>
         )),
         ThirdStateCheck: forwardRef((props, ref) => (
-            <Remove {...props} ref={ref}/>
+            <Remove  className="search"{...props} ref={ref}/>
         )),
-        ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref}/>),
+        ViewColumn: forwardRef((props, ref) => <ViewColumn className="search" {...props} ref={ref}/>),
     };
 
     //Table Columns
@@ -250,7 +253,7 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
                 query.orderBy?.field,
                 query.orderDirection != "desc",
                 query.search,
-                query.filters
+                // query.filters
             )
             .then(({data}) => {
                 var bankData = data.banks.map(bank => ({
@@ -274,9 +277,23 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
         history.push("/branch");
     }
 
+    const tableStyle = {
+        borderRadius:'2rem',
+        textAlign:"center",
+        padding:'5rem',
+        backgroundColor:"#393b3a"
+      };
+
+      
+
+      
+
     return (
         <>
+                <div className="outer-div">
+
             <MaterialTable
+                style={tableStyle}                
                 icons={tableIcons}
                 title=" "
                 columns={columnsDataTable}
@@ -290,15 +307,38 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
                 options={{
                     addRowPosition: "first",
                     actionsColumnIndex: -1,
-                    filtering: true,
+                    // filtering: true,
                     pageSizeOptions: [5, 10, 20, 50, 100],
                     pageSize: JSON.parse(localStorageService.getItem("auth_user")?.tablePageCount ?? null)?.[window.location.pathname] ?? 5,
                     emptyRowsWhenPaging: false,
+
+                    headerStyle: {
+                        fontSize: '1.1rem',
+                        // paddingLeft: '8rem',
+                        // paddingRight: '8rem'
+                        textAlign: "center",
+                        justifyContent: "flex-end",
+                        // backgroundColor: "#e2e2e2"
+                        // color:"#F2F2F2"
+                        fontWeight: "bold",
+
+                    },
+                    rowStyle: {
+                        // backgroundColor: "#F2F2F2",
+                        // textAlign: "center"
+                        fontFamily: "Montserrat, sans-serif",
+                        textAlign: "center",
+                        justifyContent: "flex-end",
+                        color:"#F2F2F2",
+                        fontWeight: "bold",
+
+                    },
                 }}
                 onRowsPerPageChange={(pageSize) => handlePageSize(pageSize, window.location.pathname)}
                 onRowClick={(e, rowData) => clickRow(e, rowData)}
                 isLoading={isLoading}
             />
+            </div>
         </>
     );
 };

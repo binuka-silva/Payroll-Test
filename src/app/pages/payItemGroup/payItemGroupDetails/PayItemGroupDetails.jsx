@@ -256,7 +256,7 @@ const PayItemGroupDetails = ({setPayItemGroupDetails}) => {
                         <div className="mt-2">
                             <Tooltip title="Update All" placement="bottom">
                                 <SaveIcon
-                                    sx={{color: "#663399"}}
+                                    sx={{color: "#0A7373"}}
                                     type="submit"
                                     onClick={onUpdate}
                                 />
@@ -266,7 +266,7 @@ const PayItemGroupDetails = ({setPayItemGroupDetails}) => {
                         <div className="mt-2">
                             <Tooltip title="Save All" placement="bottom">
                                 <SaveIcon
-                                    sx={{color: "#663399"}}
+                                    sx={{color: "#0A7373"}}
                                     type="submit"
                                     onClick={onSubmit}
                                 />

@@ -28,6 +28,7 @@ import {RESP_STATUS_CODES} from "../../common/response";
 import AutoCompleteDropDown from "../../components/AutoCompleteDropDown";
 import handlePageSize from "../../common/tablePageSize";
 
+
 const BranchList = ({fetchBranchDataFunc, branchList, isLoading}) => {
     const [bankData, setBankData] = useState([]);
     const [bank, setBank] = useState("");

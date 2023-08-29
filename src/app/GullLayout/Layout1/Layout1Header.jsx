@@ -181,7 +181,7 @@ class Layout1Header extends Component {
                     <div>{localStorageService.getItem("auth_user")?.userName}</div>
                     <div className="logo" style={{width: "100px", marginLeft: "30px"}}>
                         <Link to="/dashboard/v1/" className="cursor-pointer">
-                            <img src="/assets/images/app-top-logo.png" alt=""/>
+                            <img src="/assets/images/e-analytics.png" alt=""/>
                         </Link>
                     </div>
                 </div>

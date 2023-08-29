@@ -331,7 +331,7 @@ const PayItemAdvanceParameterDetails = ({
                         <div className="mt-2">
                             <Tooltip title="Update All" placement="bottom">
                                 <SaveIcon
-                                    sx={{color: "#663399"}}
+                                    sx={{color: "#0A7373"}}
                                     type="submit"
                                     onClick={() => onUpdate()}
                                     style={{marginRight: 20}}
@@ -342,7 +342,7 @@ const PayItemAdvanceParameterDetails = ({
                         <div className="mt-2">
                             <Tooltip title="Save All" placement="bottom">
                                 <SaveIcon
-                                    sx={{color: "#663399"}}
+                                    sx={{color: "#0A7373"}}
                                     type="submit"
                                     onClick={onSubmit}
                                     style={{marginRight: 20}}

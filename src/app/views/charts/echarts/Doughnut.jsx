@@ -20,7 +20,7 @@ const DoughnutChart = ({height}) => {
                         name: "Completed",
                         value: 80,
                         itemStyle: {
-                            color: "#663399"
+                            color: "#0A7373"
                         }
                     },
                     {

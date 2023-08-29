@@ -12,10 +12,11 @@
     padding: 2rem 2rem 0;
     position: relative;
     min-height: calc(100vh - #{$topbar-height});
-    background: rgb(87, 13, 87);          //Main Container background color
+    background: #0A7373;          //Main Container background color
     &.sidenav-open {
         width: calc(100% - #{$sidebar-left-width});
     }
+    
 }
 
 .module-loader {

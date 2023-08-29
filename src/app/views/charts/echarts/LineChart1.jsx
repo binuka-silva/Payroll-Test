@@ -19,10 +19,10 @@ const LineChart1 = ({height}) => {
                     origin: "start"
                 },
                 lineStyle: {
-                    color: "#663399"
+                    color: "#0A7373"
                 },
                 itemStyle: {
-                    color: "#663399"
+                    color: "#0A7373"
                 }
             }
         ]

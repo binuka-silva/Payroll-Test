@@ -3,14 +3,20 @@
 }
 
 .topic1{
-  color:white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color:#F2F2F2;
+  font-family: "Montserrat", sans-serif;
+  // letter-spacing: 0.3rem;
+  font-weight: bold;
+  font-size: 2.5rem;
 }
 
 .topic2{
   margin-top: 1rem;
-  color:white;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color:#0A7373;
+  font-family: "Montserrat", sans-serif;
+  // letter-spacing: 0.3rem;
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 .line1{
@@ -32,7 +38,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
+}
 
+.row3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+
+.row3_inner{
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: 5rem;
+  margin-top: 2rem;
 }
 
 .text-muted {
@@ -49,7 +71,7 @@
 }
 
 .bg-custom-1 {
-  background-color: rgba(245, 227, 255, 0.6);
+  background-color: #F2F2F2;
 
 }
 
@@ -70,5 +92,40 @@
 .dashboardCards {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 11px;
+}
+
+.dropdown{
+  width: 100%;
+  padding-top: 0;
+}
+
+.listbox{
+  background-color: #0A7373;
+
+}
+
+
+.divDropdown{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+}
+
+.inner_div{
+  margin-left: 3rem;
+  margin-right: 3rem;
+  border-radius: 3rem;
+  padding: 2rem;
+
+  //  display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-wrap: wrap;
+  // list-style-type: none;
+  // text-align: center;
+  // padding: 0;
 }
 

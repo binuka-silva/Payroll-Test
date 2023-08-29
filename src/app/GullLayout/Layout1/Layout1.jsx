@@ -64,7 +64,7 @@ class Layout1 extends Component {
                     handleClose={this.handleSearchBoxClose}
                 ></GullSearch>
             </div>
-        );
+        ); 
     }
 }
 
