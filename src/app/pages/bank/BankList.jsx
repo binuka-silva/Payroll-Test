@@ -33,6 +33,11 @@ import {omit} from "lodash";
 import "./bankList.scss";
 import { Padding } from "@mui/icons-material";
 
+import { editButtonColor } from "styles/globalStyles/globalStyles";
+import { deleteButtonColor } from "styles/globalStyles/globalStyles";
+import { tableIconColor } from "styles/globalStyles/globalStyles";
+import { tableBackgroundColor } from "styles/globalStyles/globalStyles";
+
 const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
 
     useEffect(() => {
@@ -41,31 +46,31 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
     }, []);
 
     const tableIcons = {
-        Add: forwardRef((props, ref) => <AddBox className="search" {...props} ref={ref}/>),
-        Check: forwardRef((props, ref) => <Check className="search" {...props} ref={ref}/>),
-        Clear: forwardRef((props, ref) => <Clear className="search" {...props} ref={ref}/>),
-        Delete: forwardRef((props, ref) => <DeleteOutline  className="deleteButton" {...props} ref={ref}/>),
+        Add: forwardRef((props, ref) => <AddBox style={{color:tableIconColor}}  {...props} ref={ref}/>),
+        Check: forwardRef((props, ref) => <Check style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Clear: forwardRef((props, ref) => <Clear style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Delete: forwardRef((props, ref) => <DeleteOutline style={{backgroundColor:deleteButtonColor}} className="iconButton"  {...props} ref={ref}/>),
         DetailPanel: forwardRef((props, ref) => (
-            <ChevronRight {...props} ref={ref}/>
+            <ChevronRight style={{color:tableIconColor}} {...props} ref={ref}/>
         )),
-        Edit: forwardRef((props, ref) => <Edit className="editButton" {...props} ref={ref}/>),
-        Export: forwardRef((props, ref) => <SaveAlt className="search" {...props} ref={ref}/>),
-        Filter: forwardRef((props, ref) => <FilterList className="search" {...props} ref={ref}/>),
-        FirstPage: forwardRef((props, ref) => <FirstPage className="search" {...props} ref={ref}/>),
-        LastPage: forwardRef((props, ref) => <LastPage className="search" {...props} ref={ref}/>),
-        NextPage: forwardRef((props, ref) => <ChevronRight className="search" {...props} ref={ref}/>),
+        Edit: forwardRef((props, ref) => <Edit className="iconButton" style={{backgroundColor:editButtonColor}}  {...props} ref={ref}/>),
+        Export: forwardRef((props, ref) => <SaveAlt style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Filter: forwardRef((props, ref) => <FilterList style={{color:tableIconColor}} {...props} ref={ref}/>),
+        FirstPage: forwardRef((props, ref) => <FirstPage style={{color:tableIconColor}} {...props} ref={ref}/>),
+        LastPage: forwardRef((props, ref) => <LastPage style={{color:tableIconColor}} {...props} ref={ref}/>),
+        NextPage: forwardRef((props, ref) => <ChevronRight style={{color:tableIconColor}} {...props} ref={ref}/>),
         PreviousPage: forwardRef((props, ref) => (
-            <ChevronLeft {...props} ref={ref}/>
+            <ChevronLeft style={{color:tableIconColor}} {...props} ref={ref}/>
         )),
-        ResetSearch: forwardRef((props, ref) => <Clear className="search" {...props} ref={ref}/>),
-        Search: forwardRef((props, ref) => <Search className="search" {...props} ref={ref}/>),
+        ResetSearch: forwardRef((props, ref) => <Clear style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Search: forwardRef((props, ref) => <Search style={{color:tableIconColor}} {...props} ref={ref}/>),
         SortArrow: forwardRef((props, ref) => (
-            <ArrowDownward className="search" {...props} ref={ref}/>
+            <ArrowDownward style={{color:tableIconColor}} {...props} ref={ref}/>
         )),
         ThirdStateCheck: forwardRef((props, ref) => (
-            <Remove  className="search"{...props} ref={ref}/>
+            <Remove  style={{color:tableIconColor}} {...props} ref={ref}/>
         )),
-        ViewColumn: forwardRef((props, ref) => <ViewColumn className="search" {...props} ref={ref}/>),
+        ViewColumn: forwardRef((props, ref) => <ViewColumn style={{color:tableIconColor}} {...props} ref={ref}/>),
     };
 
     //Table Columns
@@ -281,7 +286,7 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
         borderRadius:'2rem',
         textAlign:"center",
         padding:'5rem',
-        backgroundColor:"#393b3a"
+        backgroundColor:tableBackgroundColor
       };
 
       
@@ -293,7 +298,7 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
                 <div className="outer-div">
 
             <MaterialTable
-                style={tableStyle}                
+                style={tableStyle}
                 icons={tableIcons}
                 title=" "
                 columns={columnsDataTable}

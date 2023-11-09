@@ -30,6 +30,9 @@ import localStorageService from "../../../services/localStorageService";
 import handlePageSize from "../../../common/tablePageSize";
 import AutoCompleteDropDown from "../../../components/AutoCompleteDropDown";
 
+import "./bankFileList.scss";
+
+
 const BankFileList = ({
                           fetchBankFileDataFunc,
                           bankFileList,
@@ -181,24 +184,24 @@ const BankFileList = ({
         DetailPanel: forwardRef((props, ref) => (
             <ChevronRight {...props} ref={ref}/>
         )),
-        Edit: forwardRef((props, ref) => <Edit {...props} ref={ref}/>),
-        Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref}/>),
-        Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref}/>),
-        FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref}/>),
-        LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref}/>),
-        NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref}/>),
+        Edit: forwardRef((props, ref) => <Edit  className="search" {...props} ref={ref}/>),
+        Export: forwardRef((props, ref) => <SaveAlt  className="search"{...props} ref={ref}/>),
+        Filter: forwardRef((props, ref) => <FilterList className="search" {...props} ref={ref}/>),
+        FirstPage: forwardRef((props, ref) => <FirstPage className="search" {...props} ref={ref}/>),
+        LastPage: forwardRef((props, ref) => <LastPage  className="search"{...props} ref={ref}/>),
+        NextPage: forwardRef((props, ref) => <ChevronRight className="search"v {...props} ref={ref}/>),
         PreviousPage: forwardRef((props, ref) => (
-            <ChevronLeft {...props} ref={ref}/>
+            <ChevronLeft className="search" {...props} ref={ref}/>
         )),
-        ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref}/>),
-        Search: forwardRef((props, ref) => <Search {...props} ref={ref}/>),
+        ResetSearch: forwardRef((props, ref) => <Clear className="search" {...props} ref={ref}/>),
+        Search: forwardRef((props, ref) => <Search className="search" {...props} ref={ref}/>),
         SortArrow: forwardRef((props, ref) => (
-            <ArrowDownward {...props} ref={ref}/>
+            <ArrowDownward className="search" {...props} ref={ref}/>
         )),
         ThirdStateCheck: forwardRef((props, ref) => (
-            <Remove {...props} ref={ref}/>
+            <Remove  className="search"{...props} ref={ref}/>
         )),
-        ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref}/>),
+        ViewColumn: forwardRef((props, ref) => <ViewColumn className="search" {...props} ref={ref}/>),
     };
 
     //Add Row

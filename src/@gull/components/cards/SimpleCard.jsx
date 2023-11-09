@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import "./simpleCard.scss"
+
 
 const SimpleCard = ({ title, children, className, subtitle }) => {
   return (

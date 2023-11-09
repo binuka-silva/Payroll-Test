@@ -28,6 +28,11 @@ import {RESP_STATUS_CODES} from "../../common/response";
 import AutoCompleteDropDown from "../../components/AutoCompleteDropDown";
 import handlePageSize from "../../common/tablePageSize";
 
+import "./branchList.scss"
+import { tableBackgroundColor } from "styles/globalStyles/globalStyles";
+import { tableIconColor } from "styles/globalStyles/globalStyles";
+import { editButtonColor } from "styles/globalStyles/globalStyles";
+import { deleteButtonColor } from "styles/globalStyles/globalStyles";
 
 const BranchList = ({fetchBranchDataFunc, branchList, isLoading}) => {
     const [bankData, setBankData] = useState([]);
@@ -139,31 +144,31 @@ const BranchList = ({fetchBranchDataFunc, branchList, isLoading}) => {
     }
 
     const tableIcons = {
-        Add: forwardRef((props, ref) => <AddBox {...props} ref={ref}/>),
-        Check: forwardRef((props, ref) => <Check {...props} ref={ref}/>),
-        Clear: forwardRef((props, ref) => <Clear {...props} ref={ref}/>),
-        Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref}/>),
+        Add: forwardRef((props, ref) => <AddBox style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Check: forwardRef((props, ref) => <Check  style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Clear: forwardRef((props, ref) => <Clear style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Delete: forwardRef((props, ref) => <DeleteOutline style={{color:deleteButtonColor}} {...props} ref={ref}/>),
         DetailPanel: forwardRef((props, ref) => (
             <ChevronRight {...props} ref={ref}/>
         )),
-        Edit: forwardRef((props, ref) => <Edit {...props} ref={ref}/>),
-        Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref}/>),
-        Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref}/>),
-        FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref}/>),
-        LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref}/>),
-        NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref}/>),
+        Edit: forwardRef((props, ref) => <Edit style={{color:editButtonColor}} {...props} ref={ref}/>),
+        Export: forwardRef((props, ref) => <SaveAlt style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Filter: forwardRef((props, ref) => <FilterList style={{color:tableIconColor}} {...props} ref={ref}/>),
+        FirstPage: forwardRef((props, ref) => <FirstPage  style={{color:tableIconColor}}{...props} ref={ref}/>),
+        LastPage: forwardRef((props, ref) => <LastPage style={{color:tableIconColor}}  {...props} ref={ref}/>),
+        NextPage: forwardRef((props, ref) => <ChevronRight  style={{color:tableIconColor}} {...props} ref={ref}/>),
         PreviousPage: forwardRef((props, ref) => (
-            <ChevronLeft {...props} ref={ref}/>
+            <ChevronLeft  style={{color:tableIconColor}}{...props} ref={ref}/>
         )),
-        ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref}/>),
-        Search: forwardRef((props, ref) => <Search {...props} ref={ref}/>),
+        ResetSearch: forwardRef((props, ref) => <Clear style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Search: forwardRef((props, ref) => <Search style={{color:tableIconColor}} {...props} ref={ref}/>),
         SortArrow: forwardRef((props, ref) => (
-            <ArrowDownward {...props} ref={ref}/>
+            <ArrowDownward style={{color:tableIconColor}} {...props} ref={ref}/>
         )),
         ThirdStateCheck: forwardRef((props, ref) => (
-            <Remove {...props} ref={ref}/>
+            <Remove style={{color:tableIconColor}} {...props} ref={ref}/>
         )),
-        ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref}/>),
+        ViewColumn: forwardRef((props, ref) => <ViewColumn  style={{color:tableIconColor}}{...props} ref={ref}/>),
     };
 
     //Add Row
@@ -310,30 +315,65 @@ const BranchList = ({fetchBranchDataFunc, branchList, isLoading}) => {
         return tableData;
     }
 
+    
+    const tableStyle = {
+        borderRadius:'2rem',
+        textAlign:"center",
+        padding:'5rem',
+        backgroundColor:tableBackgroundColor
+      };
+
+      
+
     return (
         <>
+         <div className="outer-div">
             <MaterialTable
+                style={tableStyle}
                 icons={tableIcons}
                 title=""
                 columns={columns}
                 // data={branchList}
                 data={(query) => fetchTableData(query)}
                 editable={{
-                    onRowAdd: (newRow) => addRow(newRow),
+                    // onRowAdd: (newRow) => addRow(newRow),
                     onRowUpdate: (editedRow) => updateRow(editedRow),
                     onRowDelete: (deletedRow) => deleteRow(deletedRow),
                 }}
                 options={{
                     addRowPosition: "first",
                     actionsColumnIndex: -1,
-                    filtering: true,
+                    // filtering: true,
                     pageSizeOptions: [5, 10, 20, 50, 100],
                     pageSize: JSON.parse(localStorageService.getItem("auth_user")?.tablePageCount ?? null)?.[window.location.pathname] ?? 5,
-                    emptyRowsWhenPaging: false
+                    emptyRowsWhenPaging: false,
+
+                    headerStyle: {
+                        fontSize: '1.1rem',
+                        // paddingLeft: '8rem',
+                        // paddingRight: '8rem'
+                        textAlign: "center",
+                        justifyContent: "flex-end",
+                        // backgroundColor: "#e2e2e2"
+                        // color:"#F2F2F2"
+                        fontWeight: "bold",
+
+                    },
+                    rowStyle: {
+                        // backgroundColor: "#F2F2F2",
+                        // textAlign: "center"
+                        fontFamily: "Montserrat, sans-serif",
+                        textAlign: "center",
+                        justifyContent: "flex-end",
+                        color:"#F2F2F2",
+                        fontWeight: "bold",
+
+                    },
                 }}
                 onRowsPerPageChange={(pageSize) => handlePageSize(pageSize, window.location.pathname)}
                 isLoading={isLoading}
             />
+            </div>
         </>
     );
 };

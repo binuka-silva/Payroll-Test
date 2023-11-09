@@ -1,6 +1,7 @@
 import React, {Fragment, useState} from "react";
 import { NavLink } from "react-router-dom";
 import history from "../../@history";
+import "./breadcrumb.scss"
 
 const Breadcrumb = ({ routeSegments, breadCrumbSeparatorStyles, isPreviousPagePersist }) => {
     const [x, setX] = useState(0);
@@ -17,7 +18,7 @@ const Breadcrumb = ({ routeSegments, breadCrumbSeparatorStyles, isPreviousPagePe
       <div className="breadcrumb">
         {routeSegments ? (
           <Fragment>
-            <h1>{routeSegments[routeSegments.length - 1]["name"]}</h1>
+            <h1 className="mainTopic">{routeSegments[routeSegments.length - 1]["name"]}</h1>
           </Fragment>
         ) : null}
         <ul>
@@ -26,14 +27,14 @@ const Breadcrumb = ({ routeSegments, breadCrumbSeparatorStyles, isPreviousPagePe
                 index !== routeSegments.length - 1 ? (
                   <li key={index}>
                     <NavLink to={route.path} onClick={navClicked}>
-                      <span className="capitalize text-muted" id={route.path}>
+                      <span className="capitalize text-muted mainTopic" id={route.path}>
                         {route.name}
                       </span>
                     </NavLink>
                   </li>
                 ) : (
                   <li key={index}>
-                    <span className="capitalize text-muted">{route.name}</span>
+                    <span className="capitalize text-muted mainTopic">{route.name}</span>
                   </li>
                 )
               )

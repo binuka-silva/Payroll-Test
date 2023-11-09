@@ -388,7 +388,10 @@ const Dashboard1 = () => {
     };
 
     return (
+        <>
+        
         <div>
+            
             <div className="div1">
                 <h1 className="topic1">Employee Details</h1>
                 {/* <hr className="line1"/> */}
@@ -632,6 +635,7 @@ const Dashboard1 = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

@@ -14,6 +14,8 @@ import {logoutUser} from "app/redux/actions/UserActions";
 import localStorageService from "../../services/localStorageService";
 import {Level1} from "./constant";
 
+import { navBarBackgroundColor, navBarFontColor } from "styles/globalStyles/globalStyles";
+
 class Layout1Sidenav extends Component {
     windowListener = null;
 
@@ -717,15 +719,15 @@ class Layout1Sidenav extends Component {
 
         return (
             <Fragment>
-                <div className="side-content-wrap">
-                    <Srcollbar
+                <div className="side-content-wrap" >
+                    <Srcollbar style={{backgroundColor:navBarBackgroundColor, color:navBarFontColor}}
                         className={classList({
                             "sidebar-left o-hidden rtl-ps-none": true,
                             open: settings.layout1Settings.leftSidebar.open,
                         })}
                         // id="mainsidenav"
                     >
-                        <ul className="navigation-left">
+                        <ul className="navigation-left" style={{backgroundColor:navBarBackgroundColor, color:navBarFontColor}}>
                             {this.state.navigations.map((item, i) => (
                                 <li
                                     className={classList({
@@ -756,13 +758,13 @@ class Layout1Sidenav extends Component {
                                             <span className="nav-text">{item.name}</span>
                                         </div>
                                     )}
-                                    <div className="triangle"></div>
+                                    {/* <div className="triangle"></div> */}
                                 </li>
                             ))}
                         </ul>
                     </Srcollbar>
 
-                    <ScrollBar
+                    <ScrollBar style={{backgroundColor:navBarBackgroundColor, color:navBarFontColor}}
                         className={classList({
                             "sidebar-left-secondary o-hidden rtl-ps-none": true,
                             open: settings.layout1Settings.leftSidebar.secondaryNavOpen,

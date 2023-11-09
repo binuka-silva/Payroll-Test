@@ -4,6 +4,7 @@ import {renderRoutes} from "react-router-config";
 import Layout1Sidenav from "./Layout1Sidenav";
 import Footer from "../SharedComponents/Footer";
 import Layout1Header from "./Layout1Header";
+import NewHeader from "./NewHeader";
 
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -13,7 +14,9 @@ import {setLayoutSettings} from "app/redux/actions/LayoutActions";
 import {merge} from "lodash";
 import Loading from "@gull/components/GullLoadable/Loading";
 import {withRouter} from "react-router-dom";
+
 import "./dashboard.scss";
+import { bgColor } from '../../../styles/globalStyles/globalStyles'
 
 class Layout1 extends Component {
     state = {};
@@ -44,10 +47,11 @@ class Layout1 extends Component {
             <div>
                 <div className={`app-admin-wrap layout-sidebar-large`}>
                     <Layout1Header></Layout1Header>
+                    {/* <NewHeader></NewHeader> */}
                     <Layout1Sidenav/>
                     {/* sidebar */}
 
-                    <div
+                    <div style={{ backgroundColor: bgColor }}
                         className={classList({
                             "main-content-wrap d-flex flex-column": true,
                             "sidenav-open": settings.layout1Settings.leftSidebar.open,

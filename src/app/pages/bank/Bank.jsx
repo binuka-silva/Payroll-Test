@@ -36,15 +36,18 @@ const Bank = () => {
                 ]}
             ></Breadcrumb>
 
-            {/*<div className="row">*/}
-            {/*    <div className="mb-4">*/}
-            {/*        <BankModal className="mb-3"*/}
-            {/*                   centered={true}*/}
-            {/*                   name="Add Bank"*/}
-            {/*                   fetchBankDataFunc={fetchBankData}></BankModal>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-            {/*<div className="separator-breadcrumb border-top"></div>*/}
+            {/* <div className="row">
+               <div className="mb-4">
+                    <BankModal className="mb-3"
+                    centered={true}
+                    name="Add Bank"
+                    fetchBankDataFunc={fetchBankData}>
+
+                    </BankModal>
+                </div>
+            </div>
+
+            <div className="separator-breadcrumb border-top"></div> */}
             <div className="row">
                 <BankList
                     fetchBankDataFunc={fetchBankData}
