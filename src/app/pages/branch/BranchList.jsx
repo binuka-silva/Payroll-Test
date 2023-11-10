@@ -29,7 +29,7 @@ import AutoCompleteDropDown from "../../components/AutoCompleteDropDown";
 import handlePageSize from "../../common/tablePageSize";
 
 import "./branchList.scss"
-import { tableBackgroundColor } from "styles/globalStyles/globalStyles";
+import { tableBackgroundColor, tableHeaderBackgroundColor, tableHeaderFontColor, tableHeaderFontSize } from "styles/globalStyles/globalStyles";
 import { tableIconColor } from "styles/globalStyles/globalStyles";
 import { editButtonColor } from "styles/globalStyles/globalStyles";
 import { deleteButtonColor } from "styles/globalStyles/globalStyles";
@@ -319,7 +319,7 @@ const BranchList = ({fetchBranchDataFunc, branchList, isLoading}) => {
     const tableStyle = {
         borderRadius:'2rem',
         textAlign:"center",
-        padding:'5rem',
+        padding:'3rem',
         backgroundColor:tableBackgroundColor
       };
 
@@ -349,13 +349,11 @@ const BranchList = ({fetchBranchDataFunc, branchList, isLoading}) => {
                     emptyRowsWhenPaging: false,
 
                     headerStyle: {
-                        fontSize: '1.1rem',
-                        // paddingLeft: '8rem',
-                        // paddingRight: '8rem'
+                        fontSize: tableHeaderFontSize,
                         textAlign: "center",
                         justifyContent: "flex-end",
-                        // backgroundColor: "#e2e2e2"
-                        // color:"#F2F2F2"
+                        backgroundColor: tableHeaderBackgroundColor,
+                        color: tableHeaderFontColor,
                         fontWeight: "bold",
 
                     },

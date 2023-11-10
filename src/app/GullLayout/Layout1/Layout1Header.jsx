@@ -12,6 +12,7 @@ import {merge} from "lodash";
 import localStorageService from "../../services/localStorageService";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import { headerBackgroundColor } from "styles/globalStyles/globalStyles";
 
 class Layout1Header extends Component {
     state = {
@@ -124,7 +125,7 @@ class Layout1Header extends Component {
         let {shorcutMenuList, notificationList} = this.state;
 
         return (
-            <div className="main-header">
+            <div className="main-header" style={{backgroundColor:headerBackgroundColor}}>
                 <div style={{marginLeft: "20px"}} className="cursor-pointer">
                     <MenuOutlinedIcon fontSize="medium" onClick={this.handleMenuClick}/>
                 </div>
@@ -181,7 +182,7 @@ class Layout1Header extends Component {
                     <div>{localStorageService.getItem("auth_user")?.userName}</div>
                     <div className="logo" style={{width: "100px", marginLeft: "30px"}}>
                         <Link to="/dashboard/v1/" className="cursor-pointer">
-                            <img src="/assets/images/e-analytics.png" alt=""/>
+                            <img src="/assets/images/SimpleWages_Color.png" alt=""/>
                         </Link>
                     </div>
                 </div>

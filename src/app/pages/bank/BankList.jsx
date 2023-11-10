@@ -33,7 +33,7 @@ import {omit} from "lodash";
 import "./bankList.scss";
 import { Padding } from "@mui/icons-material";
 
-import { editButtonColor } from "styles/globalStyles/globalStyles";
+import { editButtonColor, tableHeaderBackgroundColor, tableHeaderFontColor, tableHeaderFontSize } from "styles/globalStyles/globalStyles";
 import { deleteButtonColor } from "styles/globalStyles/globalStyles";
 import { tableIconColor } from "styles/globalStyles/globalStyles";
 import { tableBackgroundColor } from "styles/globalStyles/globalStyles";
@@ -45,7 +45,7 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
         NotificationManager.listNotify.forEach(n => NotificationManager.remove({id: n.id}));
     }, []);
 
-    const tableIcons = {
+    const  tableIcons = {
         Add: forwardRef((props, ref) => <AddBox style={{color:tableIconColor}}  {...props} ref={ref}/>),
         Check: forwardRef((props, ref) => <Check style={{color:tableIconColor}} {...props} ref={ref}/>),
         Clear: forwardRef((props, ref) => <Clear style={{color:tableIconColor}} {...props} ref={ref}/>),
@@ -285,7 +285,7 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
     const tableStyle = {
         borderRadius:'2rem',
         textAlign:"center",
-        padding:'5rem',
+        padding:'3rem',
         backgroundColor:tableBackgroundColor
       };
 
@@ -318,13 +318,11 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
                     emptyRowsWhenPaging: false,
 
                     headerStyle: {
-                        fontSize: '1.1rem',
-                        // paddingLeft: '8rem',
-                        // paddingRight: '8rem'
+                        fontSize: tableHeaderFontSize,
                         textAlign: "center",
                         justifyContent: "flex-end",
-                        // backgroundColor: "#e2e2e2"
-                        // color:"#F2F2F2"
+                        backgroundColor: tableHeaderBackgroundColor,
+                        color: tableHeaderFontColor,
                         fontWeight: "bold",
 
                     },
