@@ -1,0 +1,31 @@
+.tableHeaderClass{
+    font-size: '1.1rem';
+    text-align : 'center';
+    justify-content: "flex-end";
+    background-color: 'white';
+    color: 'black';
+    font-weight: 'bold';
+    font-family:'sans-serif'
+  };
+
+  .tableRowClass{
+    font-size: '0.9rem';
+    text-align : 'center';
+    justify-content: "flex-end";
+    background-color: '';
+    color: 'black';
+    font-weight: 'bold';
+    font-family:'sans-serif'
+  };
+
+  .tableClass{
+    border-radius:'2rem';
+    text-align:"center";
+    padding:'3rem';
+    background-color:'#fef165'
+  };
+
+  .sidebar-left {
+    background-color:'red';
+    padding: 0.4rem;
+  };

@@ -60,7 +60,7 @@ const Branch = ({setBankDetails}) => {
                 <div className="col-md-12 row">
                     <Breadcrumb
                         routeSegments={[
-                            {name: "Dashboard", path: "/dashboard/v1/"},
+                            {name: "Home", path: "/dashboard/v1/"},
                             {name: "Bank", path: "/bank"},
                             {name: "Branch"},
                         ]}

@@ -55,7 +55,7 @@ const PayRollPeriods = () => {
         </div> */}
             </div>
             <br/>
-            <div className="row" style={{backgroundColor: "red"}}>
+            <div className="row">
                 <PayRollPeriodsList
                     fetchPayRollPeriodsDataFunc={fetchPayRollPeriodsData}
                     payRollPeriodsList={payRollPeriodsList}

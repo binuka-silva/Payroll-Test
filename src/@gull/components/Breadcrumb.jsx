@@ -16,11 +16,7 @@ const Breadcrumb = ({ routeSegments, breadCrumbSeparatorStyles, isPreviousPagePe
   return (
     <Fragment>
       <div className="breadcrumb">
-        {routeSegments ? (
-          <Fragment>
-            <h1 className="mainTopic">{routeSegments[routeSegments.length - 1]["name"]}</h1>
-          </Fragment>
-        ) : null}
+        
         <ul>
           {routeSegments
             ? routeSegments.map((route, index) =>
@@ -35,11 +31,22 @@ const Breadcrumb = ({ routeSegments, breadCrumbSeparatorStyles, isPreviousPagePe
                 ) : (
                   <li key={index}>
                     <span className="capitalize text-muted mainTopic">{route.name}</span>
+                    
                   </li>
                 )
               )
             : null}
         </ul>
+        
+        
+      </div>
+      <div className="breadcrumb">
+      {routeSegments ? (
+          <Fragment>
+            &nbsp;&nbsp;
+            <h1 className="mainTopic">{routeSegments[routeSegments.length - 1]["name"]}</h1>
+          </Fragment>
+        ) : null}
       </div>
       <div className="separator-breadcrumb border-top" style={breadCrumbSeparatorStyles}></div>
     </Fragment>

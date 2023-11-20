@@ -4,7 +4,6 @@ import {renderRoutes} from "react-router-config";
 import Layout1Sidenav from "./Layout1Sidenav";
 import Footer from "../SharedComponents/Footer";
 import Layout1Header from "./Layout1Header";
-import NewHeader from "./NewHeader";
 
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -16,19 +15,22 @@ import Loading from "@gull/components/GullLoadable/Loading";
 import {withRouter} from "react-router-dom";
 
 import "./dashboard.scss";
-import { bgColor } from '../../../styles/globalStyles/globalStyles'
+import AppContext from "app/appContext";
+import { useContext } from "react";
 
-class Layout1 extends Component {
-    state = {};
+const Layout1 = (props)=> {
+    // state = {};
 
-    componentDidUpdate(prevProps) {
-        if (this.props.location !== prevProps.location) {
-            window.scrollTo(0, 0);
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     if (this.props.location !== prevProps.location) {
+    //         window.scrollTo(0, 0);
+    //     }
+    // }
+    const {color, setColor} = useContext(AppContext)
 
-    handleSearchBoxClose = () => {
-        let {setLayoutSettings, settings} = this.props;
+
+    const handleSearchBoxClose = () => {
+        let {setLayoutSettings, settings} = props;
         setLayoutSettings(
             merge({}, settings, {
                 layout1Settings: {
@@ -39,19 +41,23 @@ class Layout1 extends Component {
             })
         );
     };
+    
 
-    render() {
-        let {settings, routes} = this.props;
+// const contextType = AppContext;
+
+    // const {bgColor, setBgColor} = this.context
+
+    
+        let {settings, routes} = props;
 
         return (
-            <div>
-                <div className={`app-admin-wrap layout-sidebar-large`}>
+            <div style={{ marginLeft:'-1rem'}}>
+                <div className={`app-admin-wrap layout-sidebar-large`} style={{padding:'0'}}>
                     <Layout1Header></Layout1Header>
-                    {/* <NewHeader></NewHeader> */}
                     <Layout1Sidenav/>
                     {/* sidebar */}
 
-                    <div style={{ backgroundColor: bgColor }}
+                    <div style={{ backgroundColor: color, paddingLeft:'3rem', marginBottom:'0' }}
                         className={classList({
                             "main-content-wrap d-flex flex-column": true,
                             "sidenav-open": settings.layout1Settings.leftSidebar.open,
@@ -65,12 +71,11 @@ class Layout1 extends Component {
                 </div>
                 <GullSearch
                     open={settings.layout1Settings.searchBox.open}
-                    handleClose={this.handleSearchBoxClose}
+                    handleClose={handleSearchBoxClose}
                 ></GullSearch>
             </div>
         ); 
     }
-}
 
 const mapStateToProps = (state) => ({
     setLayoutSettings: PropTypes.func.isRequired,
@@ -80,3 +85,5 @@ const mapStateToProps = (state) => ({
 export default withRouter(
     connect(mapStateToProps, {setLayoutSettings})(Layout1)
 );
+
+// export default withRouter(Layout1)

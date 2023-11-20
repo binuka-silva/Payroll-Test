@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from "react";
+import React, {Component, Fragment, useContext} from "react";
 import {NavLink, withRouter} from "react-router-dom";
 // import { navigations } from "../../navigations";
 import {merge} from "lodash";
@@ -14,19 +14,30 @@ import {logoutUser} from "app/redux/actions/UserActions";
 import localStorageService from "../../services/localStorageService";
 import {Level1} from "./constant";
 
-import { navBarBackgroundColor, navBarFontColor } from "styles/globalStyles/globalStyles";
+import { useEffect } from "react";
+import { useState } from "react";
+import AppContext from "app/appContext";
 
-class Layout1Sidenav extends Component {
-    windowListener = null;
 
-    state = {
+
+const Layout1Sidenav = (props) => {
+    // windowListener = null;
+
+
+
+    const [state, setState] = useState({
         selectedItem: null,
         navOpen: true,
         secondaryNavOpen: false,
         navigations: []
-    };
-
-    userNavigations = () => {
+    })
+    
+    useEffect(()=>{
+        userNavigations();
+    
+    },[])
+    const userNavigations = () => {
+        
         const navigations = [];
 
         const userDetails = localStorageService.getItem("auth_user");
@@ -600,35 +611,35 @@ class Layout1Sidenav extends Component {
         navigations.push(bankFileConfiguration);
         navigations.push(settings);
 
-        this.setState({navigations})
+        setState({...state,navigations})
     }
 
-    onMainItemMouseEnter = (item) => {
+    const onMainItemMouseEnter = (item) => {
         if (item.type === "dropDown") {
-            this.setSelected(item);
-            this.openSecSidenav();
+            setSelected(item);
+            openSecSidenav();
         } else {
-            this.setSelected(item);
-            this.closeSecSidenav();
+            setSelected(item);
+            closeSecSidenav();
         }
     };
 
-    onMainItemMouseLeave = () => {
+    const onMainItemMouseLeave = () => {
         // this.closeSecSidenav();
     };
 
-    setSelected = (selectedItem) => {
-        this.setState({selectedItem});
+    const setSelected = (selectedItem) => {
+        setState({...state,selectedItem});
         // console.log(selectedItem);
     };
 
-    removeSelected = () => {
-        this.setState({selectedItem: null});
+    const removeSelected = () => {
+        setState({...state,selectedItem: null});
         // console.log('removed');
     };
 
-    openSecSidenav = () => {
-        let {setLayoutSettings, settings} = this.props;
+    const openSecSidenav = () => {
+        let {setLayoutSettings, settings} = props;
 
         setLayoutSettings(
             merge({}, settings, {
@@ -641,8 +652,8 @@ class Layout1Sidenav extends Component {
         );
     };
 
-    closeSecSidenav = () => {
-        let {setLayoutSettings, settings} = this.props;
+    const closeSecSidenav = () => {
+        let {setLayoutSettings, settings} = props;
         let other = {};
 
         if (isMobile()) {
@@ -661,8 +672,8 @@ class Layout1Sidenav extends Component {
         );
     };
 
-    closeSidenav = () => {
-        let {setLayoutSettings, settings} = this.props;
+    const closeSidenav = () => {
+        let {setLayoutSettings, settings} = props;
         setLayoutSettings(
             merge({}, settings, {
                 layout1Settings: {
@@ -675,8 +686,8 @@ class Layout1Sidenav extends Component {
         );
     };
 
-    openSidenav = () => {
-        let {setLayoutSettings, settings} = this.props;
+    const openSidenav = () => {
+        let {setLayoutSettings, settings} = props;
         setLayoutSettings(
             merge({}, settings, {
                 layout1Settings: {
@@ -688,74 +699,74 @@ class Layout1Sidenav extends Component {
         );
     };
 
-    componentDidMount() {
-        if (this.state.selectedItem === null) this.closeSecSidenav();
+    // componentDidMount() {
+    //     if (this.state.selectedItem === null) closeSecSidenav();
 
-        this.userNavigations();
-        if (window)
-            if (window.innerWidth < 1200) {
-                this.closeSidenav();
-            } else {
-                this.openSidenav();
-            }
+    //     if (window)
+    //         if (window.innerWidth < 1200) {
+    //             this.closeSidenav();
+    //         } else {
+    //             this.openSidenav();
+    //         }
 
-        this.windowListener = window.addEventListener("resize", ({target}) => {
-            if (window.innerWidth < 1200) {
-                this.closeSidenav();
-            } else {
-                this.openSidenav();
-            }
-        });
-    }
+    //     this.windowListener = window.addEventListener("resize", ({target}) => {
+    //         if (window.innerWidth < 1200) {
+    //             this.closeSidenav();
+    //         } else {
+    //             this.openSidenav();
+    //         }
+    //     });
+    // }
 
-    componentWillUnmount() {
-        if (this.windowListener) {
-            window.removeEventListener("resize", this.windowListener);
-        }
-    }
+    // componentWillUnmount() {
+    //     if (this.windowListener) {
+    //         window.removeEventListener("resize", this.windowListener);
+    //     }
+    // }
 
-    render() {
-        let {settings} = this.props;
+    const {navColor, setNavColor} = useContext(AppContext)
+
+        let {settings} = props;
 
         return (
             <Fragment>
                 <div className="side-content-wrap" >
-                    <Srcollbar style={{backgroundColor:navBarBackgroundColor, color:navBarFontColor}}
+                    <Srcollbar style={{backgroundColor:navColor}}
                         className={classList({
                             "sidebar-left o-hidden rtl-ps-none": true,
                             open: settings.layout1Settings.leftSidebar.open,
                         })}
                         // id="mainsidenav"
                     >
-                        <ul className="navigation-left" style={{backgroundColor:navBarBackgroundColor, color:navBarFontColor}}>
-                            {this.state.navigations.map((item, i) => (
+                        <ul className="navigation-left" style={{backgroundColor:navColor }}>
+                            {state.navigations.map((item, i) => (
                                 <li
                                     className={classList({
                                         "nav-item": true,
-                                        active: this.state.selectedItem === item,
+                                        active: state.selectedItem === item,
                                     })}
                                     onMouseEnter={() => {
-                                        this.onMainItemMouseEnter(item);
+                                        onMainItemMouseEnter(item);
                                     }}
-                                    onMouseLeave={this.onMainItemMouseLeave}
+                                    onMouseLeave={onMainItemMouseLeave}
                                     key={i}
                                 >
                                     {item.path && item.type !== "extLink" && (
                                         <NavLink className="nav-item-hold" to={item.path}>
                                             <i className={`nav-icon ${item.icon}`}></i>
-                                            <span className="nav-text">{item.name}</span>
+                                            <span className="nav-text" >{item.name}</span>
                                         </NavLink>
                                     )}
                                     {item.path && item.type === "extLink" && (
                                         <a className="nav-item-hold" href={item.path}>
                                             <i className={`nav-icon ${item.icon}`}></i>
-                                            <span className="nav-text">{item.name}</span>
+                                            <span className="nav-text" >{item.name}</span>
                                         </a>
                                     )}
                                     {!item.path && (
                                         <div className="nav-item-hold">
                                             <i className={`nav-icon ${item.icon}`}></i>
-                                            <span className="nav-text">{item.name}</span>
+                                            <span className="nav-text" style={{ fontWeight:'bold'}}>{item.name}</span>
                                         </div>
                                     )}
                                     {/* <div className="triangle"></div> */}
@@ -764,22 +775,23 @@ class Layout1Sidenav extends Component {
                         </ul>
                     </Srcollbar>
 
-                    <ScrollBar style={{backgroundColor:navBarBackgroundColor, color:navBarFontColor}}
+                    <ScrollBar style={{backgroundColor:navColor}}
                         className={classList({
                             "sidebar-left-secondary o-hidden rtl-ps-none": true,
                             open: settings.layout1Settings.leftSidebar.secondaryNavOpen,
                         })}
                     >
-                        {this.state.selectedItem && this.state.selectedItem.sub && (
+                        {state.selectedItem && state.selectedItem.sub && (
                             <DropDownMenu
-                                menu={this.state.selectedItem.sub}
-                                closeSecSidenav={this.closeSecSidenav}
+                                menu={state.selectedItem.sub}
+                                closeSecSidenav={closeSecSidenav}
                             ></DropDownMenu>
                         )}
                         <span></span>
                     </ScrollBar>
                     <div
-                        onMouseEnter={this.closeSecSidenav}
+                    style={{}}
+                        onMouseEnter={closeSecSidenav}
                         className={classList({
                             "sidebar-overlay": true,
                             open: settings.layout1Settings.leftSidebar.secondaryNavOpen,
@@ -789,7 +801,7 @@ class Layout1Sidenav extends Component {
             </Fragment>
         );
     }
-}
+
 
 Layout1Sidenav.propTypes = {
     setLayoutSettings: PropTypes.func.isRequired,

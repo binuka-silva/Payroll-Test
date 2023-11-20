@@ -141,7 +141,7 @@ class NewHeader extends Component {
                                 className="toggle-hidden cursor-pointer"
                             >
                                 <img
-                                    src="/assets/images/2-image.png"
+                                    src="/assets/images/user.png"
                                     id="userDropdown"
                                     alt=""
                                     data-toggle="dropdown"

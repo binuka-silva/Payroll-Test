@@ -22,6 +22,7 @@ import userRolesService from "../../api/userRolesServices/userRoleService";
 import labelConfigurationService from "../../api/configurationServices/labelConfigurationService";
 import handlePageSize from "../../common/tablePageSize";
 import {FormLabel, FormSelect} from "react-bootstrap";
+import { tableIconColor, editButtonColor, deleteButtonColor, tableBackgroundColor, tableHeaderBackgroundColor, tableHeaderFontColor, tableHeaderFontFamily, tableHeaderFontSize, tableHeaderFontWeight, tableRowBackgroundColor, tableRowFontColor, tableRowFontFamily, tableRowFontSize, tableRowFontWeight } from "styles/globalStyles/globalStyles";
 
 const PageLabelConfigurationList = ({
                                         fetchLabelConfigurationDataFunc,
@@ -101,31 +102,31 @@ const PageLabelConfigurationList = ({
     }
 
     const tableIcons = {
-        Add: forwardRef((props, ref) => <AddBox {...props} ref={ref}/>),
-        Check: forwardRef((props, ref) => <Check {...props} ref={ref}/>),
-        Clear: forwardRef((props, ref) => <Clear {...props} ref={ref}/>),
-        Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref}/>),
+        Add: forwardRef((props, ref) => <AddBox style={{color:tableIconColor}}  {...props} ref={ref}/>),
+        Check: forwardRef((props, ref) => <Check style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Clear: forwardRef((props, ref) => <Clear style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Delete: forwardRef((props, ref) => <DeleteOutline style={{backgroundColor:deleteButtonColor}} className="iconButton"  {...props} ref={ref}/>),
         DetailPanel: forwardRef((props, ref) => (
-            <ChevronRight {...props} ref={ref}/>
+            <ChevronRight style={{color:tableIconColor}} {...props} ref={ref}/>
         )),
-        Edit: forwardRef((props, ref) => <Edit {...props} ref={ref}/>),
-        Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref}/>),
-        Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref}/>),
-        FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref}/>),
-        LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref}/>),
-        NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref}/>),
+        Edit: forwardRef((props, ref) => <Edit className="iconButton" style={{backgroundColor:editButtonColor}}  {...props} ref={ref}/>),
+        Export: forwardRef((props, ref) => <SaveAlt style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Filter: forwardRef((props, ref) => <FilterList style={{color:tableIconColor}} {...props} ref={ref}/>),
+        FirstPage: forwardRef((props, ref) => <FirstPage style={{color:tableIconColor}} {...props} ref={ref}/>),
+        LastPage: forwardRef((props, ref) => <LastPage style={{color:tableIconColor}} {...props} ref={ref}/>),
+        NextPage: forwardRef((props, ref) => <ChevronRight style={{color:tableIconColor}} {...props} ref={ref}/>),
         PreviousPage: forwardRef((props, ref) => (
-            <ChevronLeft {...props} ref={ref}/>
+            <ChevronLeft style={{color:tableIconColor}} {...props} ref={ref}/>
         )),
-        ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref}/>),
-        Search: forwardRef((props, ref) => <Search {...props} ref={ref}/>),
+        ResetSearch: forwardRef((props, ref) => <Clear style={{color:tableIconColor}} {...props} ref={ref}/>),
+        Search: forwardRef((props, ref) => <Search style={{color:tableIconColor}} {...props} ref={ref}/>),
         SortArrow: forwardRef((props, ref) => (
-            <ArrowDownward {...props} ref={ref}/>
+            <ArrowDownward style={{color:tableIconColor}} {...props} ref={ref}/>
         )),
         ThirdStateCheck: forwardRef((props, ref) => (
-            <Remove {...props} ref={ref}/>
+            <Remove  style={{color:tableIconColor}} {...props} ref={ref}/>
         )),
-        ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref}/>),
+        ViewColumn: forwardRef((props, ref) => <ViewColumn style={{color:tableIconColor}} {...props} ref={ref}/>),
     };
 
     //Update Row
@@ -178,10 +179,18 @@ const PageLabelConfigurationList = ({
                     );
                 });
         });
-
+        const tableStyle = {
+            borderRadius:'2rem',
+            textAlign:"center",
+            padding:'3rem',
+            backgroundColor:tableBackgroundColor
+          };
+    
     return (
         <>
             <MaterialTable
+                            style={tableStyle}
+
                 icons={tableIcons}
                 title={
                     <div className="mt-2 mb-3 ">
@@ -212,6 +221,27 @@ const PageLabelConfigurationList = ({
                         )?.[window.location.pathname] ?? 5,
                     emptyRowsWhenPaging: false,
                     grouping: true,
+
+                    headerStyle: {
+                        fontSize: tableHeaderFontSize,
+                        textAlign: "center",
+                        justifyContent: "flex-end",
+                        backgroundColor: tableHeaderBackgroundColor,
+                        color: tableHeaderFontColor,
+                        fontWeight: tableHeaderFontWeight,
+                        fontFamily:tableHeaderFontFamily,
+                    },
+                    rowStyle: {
+
+                        fontFamily:tableRowFontFamily,
+                        textAlign: "center",
+                        justifyContent: "flex-end",
+                        color:tableRowFontColor,
+                        fontWeight: tableRowFontWeight,
+                        fontSize: tableRowFontSize,
+                        backgroundColor: tableRowBackgroundColor,
+                      
+                    },
                 }}
                 onRowsPerPageChange={(pageSize) =>
                     handlePageSize(pageSize, window.location.pathname)

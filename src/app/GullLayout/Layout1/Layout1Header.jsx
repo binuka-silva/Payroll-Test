@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useContext} from "react";
 import {Dropdown} from "react-bootstrap";
 import {Link, withRouter} from "react-router-dom";
 
@@ -12,81 +12,83 @@ import {merge} from "lodash";
 import localStorageService from "../../services/localStorageService";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import { headerBackgroundColor } from "styles/globalStyles/globalStyles";
 
-class Layout1Header extends Component {
-    state = {
-        shorcutMenuList: [
-            {
-                icon: "i-Shop-4",
-                link: "#",
-                text: "Home",
-            },
-            {
-                icon: "i-Library",
-                link: "#",
-                text: "Ui Kits",
-            },
-            {
-                icon: "i-Drop",
-                link: "#",
-                text: "Apps",
-            },
-            {
-                icon: "i-File-Clipboard-File--Text",
-                link: "#",
-                text: "Form",
-            },
-            {
-                icon: "i-Checked-User",
-                link: "#",
-                text: "Sessions",
-            },
-            {
-                icon: "i-Ambulance",
-                link: "#",
-                text: "Support",
-            },
-        ],
-        notificationList: [
-            {
-                icon: "i-Speach-Bubble-6",
-                title: "New message",
-                description: "James: Hey! are you busy?",
-                time: "2019-10-30T02:10:18.931Z",
-                color: "primary",
-                status: "New",
-            },
-            {
-                icon: "i-Receipt-3",
-                title: "New order received",
-                description: "1 Headphone, 3 iPhone",
-                time: "2019-03-10T02:10:18.931Z",
-                color: "success",
-                status: "New",
-            },
-            {
-                icon: "i-Empty-Box",
-                title: "Product out of stock",
-                description: "1 Headphone, 3 iPhone",
-                time: "2019-05-10T02:10:18.931Z",
-                color: "danger",
-                status: "3",
-            },
-            {
-                icon: "i-Data-Power",
-                title: "Server up!",
-                description: "Server rebooted successfully",
-                time: "2019-03-10T02:10:18.931Z",
-                color: "success",
-                status: "3",
-            },
-        ],
-        showSearchBox: false,
-    };
+import AppContext from "app/appContext";
 
-    handleMenuClick = () => {
-        let {setLayoutSettings, settings} = this.props;
+const Layout1Header = (props)=> {
+
+    // state = {
+    //     shorcutMenuList: [
+    //         {
+    //             icon: "i-Shop-4",
+    //             link: "#",
+    //             text: "Home",
+    //         },
+    //         {
+    //             icon: "i-Library",
+    //             link: "#",
+    //             text: "Ui Kits",
+    //         },
+    //         {
+    //             icon: "i-Drop",
+    //             link: "#",
+    //             text: "Apps",
+    //         },
+    //         {
+    //             icon: "i-File-Clipboard-File--Text",
+    //             link: "#",
+    //             text: "Form",
+    //         },
+    //         {
+    //             icon: "i-Checked-User",
+    //             link: "#",
+    //             text: "Sessions",
+    //         },
+    //         {
+    //             icon: "i-Ambulance",
+    //             link: "#",
+    //             text: "Support",
+    //         },
+    //     ],
+    //     notificationList: [
+    //         {
+    //             icon: "i-Speach-Bubble-6",
+    //             title: "New message",
+    //             description: "James: Hey! are you busy?",
+    //             time: "2019-10-30T02:10:18.931Z",
+    //             color: "primary",
+    //             status: "New",
+    //         },
+    //         {
+    //             icon: "i-Receipt-3",
+    //             title: "New order received",
+    //             description: "1 Headphone, 3 iPhone",
+    //             time: "2019-03-10T02:10:18.931Z",
+    //             color: "success",
+    //             status: "New",
+    //         },
+    //         {
+    //             icon: "i-Empty-Box",
+    //             title: "Product out of stock",
+    //             description: "1 Headphone, 3 iPhone",
+    //             time: "2019-05-10T02:10:18.931Z",
+    //             color: "danger",
+    //             status: "3",
+    //         },
+    //         {
+    //             icon: "i-Data-Power",
+    //             title: "Server up!",
+    //             description: "Server rebooted successfully",
+    //             time: "2019-03-10T02:10:18.931Z",
+    //             color: "success",
+    //             status: "3",
+    //         },
+    //     ],
+    //     showSearchBox: false,
+    // };
+
+    const handleMenuClick = () => {
+        let {setLayoutSettings, settings} = props;
         setLayoutSettings(
             merge({}, settings, {
                 layout1Settings: {
@@ -101,15 +103,15 @@ class Layout1Header extends Component {
         );
     };
 
-    toggleFullScreen = () => {
+    const toggleFullScreen = () => {
         if (document.fullscreenEnabled) {
             if (!document.fullscreen) document.documentElement.requestFullscreen();
             else document.exitFullscreen();
         }
     };
 
-    handleSearchBoxOpen = () => {
-        let {setLayoutSettings, settings} = this.props;
+    const handleSearchBoxOpen = () => {
+        let {setLayoutSettings, settings} = props;
         setLayoutSettings(
             merge({}, settings, {
                 layout1Settings: {
@@ -121,13 +123,14 @@ class Layout1Header extends Component {
         );
     };
 
-    render() {
-        let {shorcutMenuList, notificationList} = this.state;
+    // render() {
+    //     let {shorcutMenuList, notificationList} = this.state;
+    const {headerColor, setHeaderColor} = useContext(AppContext)
 
         return (
-            <div className="main-header" style={{backgroundColor:headerBackgroundColor}}>
-                <div style={{marginLeft: "20px"}} className="cursor-pointer">
-                    <MenuOutlinedIcon fontSize="medium" onClick={this.handleMenuClick}/>
+            <div className="main-header" style={{backgroundColor:headerColor,   margin: '0'}}>
+                <div style={{marginLeft: "50px",}} className="cursor-pointer">
+                    <MenuOutlinedIcon fontSize="medium" onClick={handleMenuClick}/>
                 </div>
                 <div style={{marginLeft: "20px"}}>
                     <Link to="/dashboard/v1/" className="cursor-pointer">
@@ -171,7 +174,7 @@ class Layout1Header extends Component {
                                 <Link
                                     to="/session/signin"
                                     className="dropdown-item cursor-pointer"
-                                    onClick={this.props.logoutUser}
+                                    onClick={props.logoutUser}
                                 >
                                     Sign out
                                 </Link>
@@ -182,14 +185,14 @@ class Layout1Header extends Component {
                     <div>{localStorageService.getItem("auth_user")?.userName}</div>
                     <div className="logo" style={{width: "100px", marginLeft: "30px"}}>
                         <Link to="/dashboard/v1/" className="cursor-pointer">
-                            <img src="/assets/images/SimpleWages_Color.png" alt=""/>
+                            <img src="/assets/images/app-top-logo.png" alt=""/>
                         </Link>
                     </div>
                 </div>
             </div>
         );
     }
-}
+
 
 Layout1Header.propTypes = {
     setLayoutSettings: PropTypes.func.isRequired,

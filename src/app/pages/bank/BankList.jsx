@@ -6,6 +6,7 @@ import AddBox from "@material-ui/icons/AddBox";
 import Check from "@material-ui/icons/Check";
 import Clear from "@material-ui/icons/Clear";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
+import DeleteIcon from '@mui/icons-material/Delete';
 import ChevronRight from "@material-ui/icons/ChevronRight";
 import Edit from "@material-ui/icons/Edit";
 import SaveAlt from "@material-ui/icons/SaveAlt";
@@ -33,10 +34,8 @@ import {omit} from "lodash";
 import "./bankList.scss";
 import { Padding } from "@mui/icons-material";
 
-import { editButtonColor, tableHeaderBackgroundColor, tableHeaderFontColor, tableHeaderFontSize } from "styles/globalStyles/globalStyles";
-import { deleteButtonColor } from "styles/globalStyles/globalStyles";
-import { tableIconColor } from "styles/globalStyles/globalStyles";
-import { tableBackgroundColor } from "styles/globalStyles/globalStyles";
+import { tableIconColor, editButtonColor, deleteButtonColor, tableBackgroundColor, tableHeaderBackgroundColor, tableHeaderFontColor, tableHeaderFontFamily, tableHeaderFontSize, tableHeaderFontWeight, tableRowBackgroundColor, tableRowFontColor, tableRowFontFamily, tableRowFontSize, tableRowFontWeight } from "styles/globalStyles/globalStyles";
+// import "../../../styles/globalStyles/globalClasses.scss"
 
 const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
 
@@ -282,22 +281,23 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
         history.push("/branch");
     }
 
+    
+
+      
     const tableStyle = {
         borderRadius:'2rem',
         textAlign:"center",
         padding:'3rem',
         backgroundColor:tableBackgroundColor
       };
-
-      
-
       
 
     return (
         <>
                 <div className="outer-div">
 
-            <MaterialTable
+            <MaterialTable 
+                
                 style={tableStyle}
                 icons={tableIcons}
                 title=" "
@@ -317,25 +317,27 @@ const BankList = ({fetchBankDataFunc, bankList, setBankDetails, isLoading}) => {
                     pageSize: JSON.parse(localStorageService.getItem("auth_user")?.tablePageCount ?? null)?.[window.location.pathname] ?? 5,
                     emptyRowsWhenPaging: false,
 
-                    headerStyle: {
+                     headerStyle: {
+                        // className:"tableHeaderClass"
                         fontSize: tableHeaderFontSize,
                         textAlign: "center",
                         justifyContent: "flex-end",
                         backgroundColor: tableHeaderBackgroundColor,
                         color: tableHeaderFontColor,
-                        fontWeight: "bold",
-
+                        fontWeight: tableHeaderFontWeight,
+                        fontFamily:tableHeaderFontFamily,
                     },
                     rowStyle: {
-                        // backgroundColor: "#F2F2F2",
-                        // textAlign: "center"
-                        fontFamily: "Montserrat, sans-serif",
+                        // className:"tableRowClass"
+                        fontFamily:tableRowFontFamily,
                         textAlign: "center",
                         justifyContent: "flex-end",
-                        color:"#F2F2F2",
-                        fontWeight: "bold",
-
+                        color:tableRowFontColor,
+                        fontWeight: tableRowFontWeight,
+                        fontSize: tableRowFontSize,
+                        backgroundColor: tableRowBackgroundColor,
                     },
+
                 }}
                 onRowsPerPageChange={(pageSize) => handlePageSize(pageSize, window.location.pathname)}
                 onRowClick={(e, rowData) => clickRow(e, rowData)}

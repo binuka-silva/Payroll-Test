@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import {withRouter} from "react-router-dom";
 import NotificationContainer from "react-notifications/lib/NotificationContainer";
 import {Breadcrumb} from "../../../@gull";
@@ -11,6 +11,8 @@ import {appTopLogoPath, backgroundImagePath, signInLogoPath} from "./constant";
 
 import "./styles/style.scss";
 import ImageUpload from "../../components/ImageUpload";
+import { SketchPicker } from "react-color";
+import AppContext from "app/appContext";
 
 const Configuration = () => {
     const [isLoading, setLoading] = useState(false);
@@ -28,6 +30,8 @@ const Configuration = () => {
     const signInFileReader = new FileReader();
     const signInBackgroundFileReader = new FileReader();
     const appTopFileReader = new FileReader();
+    // const {color, setColor} = useContext(AppContext)
+    const fs = require('fs');
 
     //Component did mount only
     useEffect(() => {
@@ -36,6 +40,24 @@ const Configuration = () => {
         fetchConfigs();
         //Fetch table data
     }, []);
+
+    // Retrieve background color from localStorage
+    useEffect(() => {
+        const savedBgColor = localStorageService.getItem("bgColor");
+        if (savedBgColor) {
+          setColor(savedBgColor);
+        }
+
+        const savedHeaderColor = localStorageService.getItem("headerColor");
+        if (savedHeaderColor) {
+          setHeaderColor(savedHeaderColor);
+        }
+
+        const savedNavColor = localStorageService.getItem("navColor");
+        if (savedNavColor) {
+            setNavColor(savedNavColor);
+        }
+      }, []);
 
     signInFileReader.addEventListener("load", () => {
         setSignInImgSrc(signInFileReader.result + "");
@@ -124,18 +146,50 @@ const Configuration = () => {
             setAppTopFile(file);
         }
     }
+    const [showBgColorPicker, setShowBgColorPicker] = useState(false);
+    const [showHeaderColorPicker, setShowHeaderColorPicker] = useState(false);
+    const [showSideNavColorPicker, setShowSideNavColorPicker] = useState(false);
+    
+
+    const [showColorPicker, setShowColorPicker] = useState(false);
+    const {color, setColor} = useContext(AppContext)
+    const {headerColor, setHeaderColor} = useContext(AppContext)
+    const {navColor, setNavColor} = useContext(AppContext)
+    
+    const handleToggleColorPicker = () => {
+        setShowColorPicker((prevShowColorPicker) => !prevShowColorPicker);
+      };
+
+    const handleOnChangeBgColor = (color) => {
+        console.log(color.hex)
+        localStorageService.setItem("bgColor", color.hex); 
+        setColor(color.hex);
+      };
+
+      const handleOnChangeHeaderColor = (color) => {
+        console.log(color.hex)
+        localStorageService.setItem("headerColor", color.hex); 
+        setHeaderColor(color.hex);
+      };
+
+      const handleOnChangeNavColor = (color) => {
+        console.log(color.hex)
+        localStorageService.setItem("navColor", color.hex); 
+        setNavColor(color.hex);
+      };
+
 
     return (
         <>
             <Breadcrumb
                 routeSegments={[
-                    {name: "Dashboard", path: "/dashboard/v1/"},
+                    {name: "Home", path: "/dashboard/v1/"},
                     {name: "Configurations"},
                 ]}
             ></Breadcrumb>
             {isLoading ? (<GullLoadable/>) : (
                 <>
-                    <div className="row row-xs">
+                    <div className="row row-xs" >
                         <div className="col d-flex justify-content-end align-items-end">
                             <Button
                                 style={{width: "60px", marginLeft: "15px"}}
@@ -217,11 +271,77 @@ const Configuration = () => {
                         <ImageUpload setImgSrc={setAppTopImgSrc} imgSrc={appTopImgSrc} defaultImagePath={appTopLogoPath}
                                      imageOnChange={handleAppTopFileSelect} className="col-4"/>
                     </div>
+
+                   
+                    <div className="row d-flex justify-content-center mb-3">
+                    <FormLabel className="col-4">Background Color</FormLabel>
+                    <div className="col-4">
+                        <button onClick={() => setShowBgColorPicker(!showBgColorPicker)}>
+                        {showBgColorPicker ? "Close Color Picker" : "Open Color Picker"}
+                        </button>
+
+                        {showBgColorPicker && (
+                        <div>
+                            <SketchPicker
+                            color="#FFF"
+                            onChangeComplete={handleOnChangeBgColor}
+                            />
+                        </div>
+                        )}
+                    </div>
+                    </div>
+
+                    <div className="row d-flex justify-content-center mb-3">
+                    <FormLabel className="col-4">Header Color</FormLabel>
+                    <div className="col-4">
+                        <button onClick={() => setShowHeaderColorPicker(!showHeaderColorPicker)}>
+                        {showHeaderColorPicker ? "Close Color Picker" : "Open Color Picker"}
+                        </button>
+
+                        {showHeaderColorPicker && (
+                        <div>
+                            <SketchPicker
+                            color="#FFF"
+                            onChangeComplete={handleOnChangeHeaderColor}
+                            />
+                        </div>
+                        )}
+                    </div>
+                    </div>
+
+                    <div className="row d-flex justify-content-center mb-3">
+                    <FormLabel className="col-4">Side Navigation Color</FormLabel>
+                    <div className="col-4">
+                        <button onClick={() => setShowSideNavColorPicker(!showSideNavColorPicker)}>
+                        {showSideNavColorPicker ? "Close Color Picker" : "Open Color Picker"}
+                        </button>
+
+                        {showSideNavColorPicker && (
+                        <div>
+                            <SketchPicker
+                            color="#FFF"
+                            onChangeComplete={handleOnChangeNavColor} 
+                            />
+                        </div>
+                        )}
+                    </div>
+                    </div>
+
+
+
+                    
+
+
+
+
+    
                 </>
             )}
             <NotificationContainer/>
         </>
     );
 }
+
+export const getCurrentColor = Configuration.getCurrentColor;
 
 export default withRouter(Configuration);
